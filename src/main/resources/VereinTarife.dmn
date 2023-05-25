@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_1j6cp41" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
+  <decision id="Decision_0wgehn3" name="Berechnung des Monatlichen Beitrags">
+    <informationRequirement id="InformationRequirement_09u5shd">
+      <requiredInput href="#InputData_1txpc7n" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1dahmdb">
+      <requiredInput href="#InputData_1qc3qxq" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1evj8r8">
+      <requiredInput href="#InputData_1jq7yv4" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_1of2agc">
+      <requiredInput href="#InputData_1760k4c" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0sr7qqk">
+      <requiredInput href="#InputData_0oxn2wp" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_0yd8009">
+      <input id="Input_1" label="Alter" camunda:inputVariable="alter">
+        <inputExpression id="InputExpression_1" typeRef="integer">
+          <text>Alter</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1uogrl1" label="Mitgliedschaftsdauer" camunda:inputVariable="mitgliedschaftsdauer">
+        <inputExpression id="LiteralExpression_1e9qr9b" typeRef="integer">
+          <text>Dauer</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_153gt0z" label="Art der Mitgliedschaft" camunda:inputVariable="mitgliedschaft">
+        <inputExpression id="LiteralExpression_1lgk48g" typeRef="string">
+          <text>Mitgliedschaft</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0er9slk">
+          <text>"Aktiv"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_0h6948a" label="Art der Aktivität" camunda:inputVariable="aktivität">
+        <inputExpression id="LiteralExpression_05lzql9" typeRef="string">
+          <text>Aktivitäten</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_12g2alv">
+          <text>""</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_19r63cs" label="Ehrenmitglied" camunda:inputVariable="ehrenmitglied">
+        <inputExpression id="LiteralExpression_02licin" typeRef="boolean">
+          <text>Ehrenmitglied</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="Beitrag in €" name="Beitrag" typeRef="integer" />
+      <rule id="DecisionRule_0eyftiq">
+        <description>Kostenloser Kindertarif</description>
+        <inputEntry id="UnaryTests_1goy7d8">
+          <text>&lt;=6</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1tezb0a">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1vhmz7d">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1cpqm74">
+          <text>"Freizeit"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0faian0">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0aw32zo">
+          <text>0</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ph7t87">
+        <description>Jugendtarif</description>
+        <inputEntry id="UnaryTests_0sib2ma">
+          <text>[7..12]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xbz3ng">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0vupaly">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_07k1gz7">
+          <text>"Freizeit"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0lxp67f">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1yiso8d">
+          <text>1</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1s5qabd">
+        <description>Teenager Tarif</description>
+        <inputEntry id="UnaryTests_0auvmq2">
+          <text>[13..17]</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1trqyjp">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yzuxcj">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1qaxxd7">
+          <text>"Freizeit"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1nosczj">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1ysyilr">
+          <text>3</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1gbr7gn">
+        <description>Standard Tarif</description>
+        <inputEntry id="UnaryTests_172ds0e">
+          <text>&gt;=18</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1e8t8zu">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pvuytq">
+          <text>"Aktiv"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1sjl32x">
+          <text>"Freizeit"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0nz0zqr">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ue6nnf">
+          <text>10</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1gx0x28">
+        <description>Standard ermäßigt Passiv</description>
+        <inputEntry id="UnaryTests_08zi72d">
+          <text>&gt;=18</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ft6969">
+          <text>&gt;=5</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0zy3h3z">
+          <text>"Aktiv"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1dykror">
+          <text>"Freizeit"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1akpb5u">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0x3bj4y">
+          <text>8</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0cmc6cy">
+        <description>Standard Passiv</description>
+        <inputEntry id="UnaryTests_1nypjon">
+          <text>&gt;=18</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0i09kha">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0vz4cwr">
+          <text>"Passiv"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1203xph">
+          <text>"Freizeit"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0p7agtt">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1q3lfrt">
+          <text>6</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0rj8iym">
+        <description>Standard ermäßigt Passiv</description>
+        <inputEntry id="UnaryTests_1dktnqf">
+          <text>&gt;=18</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02el4dk">
+          <text>&gt;=5</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fe54bi">
+          <text>"Passiv"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0v4rm5d">
+          <text>"Freizeit"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_17y21ms">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_04ed109">
+          <text>5</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_00f2d8s">
+        <description>Wettkampf Tarif</description>
+        <inputEntry id="UnaryTests_11oq0ih">
+          <text>&gt;=18</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0jqmnov">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0m51261">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0t2cihq">
+          <text>"Wettkampf"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02so5ac">
+          <text>false</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1dgvt7f">
+          <text>15</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0aberkw">
+        <description>Ehrenmitglied</description>
+        <inputEntry id="UnaryTests_1992fza">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_05zp18g">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1jpzqwe">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1bas8ft">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1tr6sj2">
+          <text>true</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_07tr2w6">
+          <text>0</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_1txpc7n" name="Alter" />
+  <inputData id="InputData_1qc3qxq" name="Mitgliedschaftsdauer" />
+  <inputData id="InputData_1jq7yv4" name="Art der Mitgliedschaft" />
+  <inputData id="InputData_1760k4c" name="Art der Aktivitäten" />
+  <inputData id="InputData_0oxn2wp" name="Ehrenmitglied" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="Decision_0wgehn3">
+        <dc:Bounds height="80" width="180" x="370" y="80" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_13iyk0y" dmnElementRef="InputData_1txpc7n">
+        <dc:Bounds height="45" width="125" x="157" y="297" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0sl1e7b" dmnElementRef="InformationRequirement_09u5shd">
+        <di:waypoint x="220" y="297" />
+        <di:waypoint x="400" y="180" />
+        <di:waypoint x="400" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_06kj11m" dmnElementRef="InputData_1qc3qxq">
+        <dc:Bounds height="45" width="125" x="237" y="377" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_05pynwl" dmnElementRef="InformationRequirement_1dahmdb">
+        <di:waypoint x="300" y="377" />
+        <di:waypoint x="430" y="180" />
+        <di:waypoint x="430" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_0hmfnhm" dmnElementRef="InputData_1jq7yv4">
+        <dc:Bounds height="45" width="125" x="387" y="427" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1kentk9" dmnElementRef="InformationRequirement_1evj8r8">
+        <di:waypoint x="450" y="427" />
+        <di:waypoint x="460" y="180" />
+        <di:waypoint x="460" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1bmb68n" dmnElementRef="InputData_1760k4c">
+        <dc:Bounds height="45" width="125" x="568" y="358" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_17xttjq" dmnElementRef="InformationRequirement_1of2agc">
+        <di:waypoint x="631" y="358" />
+        <di:waypoint x="490" y="180" />
+        <di:waypoint x="490" y="160" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_10rivf2" dmnElementRef="InputData_0oxn2wp">
+        <dc:Bounds height="45" width="125" x="788" y="298" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_1nmiug3" dmnElementRef="InformationRequirement_0sr7qqk">
+        <di:waypoint x="851" y="298" />
+        <di:waypoint x="520" y="180" />
+        <di:waypoint x="520" y="160" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

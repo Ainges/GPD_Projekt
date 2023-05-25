@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_02wqr49" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
+  <bpmn:collaboration id="Collaboration_0hoznzq">
+    <bpmn:participant id="Participant_1vhrab3" name="Mitglieder Verwaltung" processRef="Process_0awdvlv" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_0awdvlv" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Einmal pro Tag">
+      <bpmn:outgoing>Flow_17fmsha</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_0blu1oa" />
+    </bpmn:startEvent>
+    <bpmn:callActivity id="Activity_06c4xbx" name="Mitglieder Tarifänderung überprüfen">
+      <bpmn:incoming>Flow_17fmsha</bpmn:incoming>
+      <bpmn:outgoing>Flow_19p87qa</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics />
+    </bpmn:callActivity>
+    <bpmn:endEvent id="Event_1o331zl" name="Alle Mitglieder Tarife angepasst">
+      <bpmn:incoming>Flow_19p87qa</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_17fmsha" sourceRef="StartEvent_1" targetRef="Activity_06c4xbx" />
+    <bpmn:sequenceFlow id="Flow_19p87qa" sourceRef="Activity_06c4xbx" targetRef="Event_1o331zl" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0hoznzq">
+      <bpmndi:BPMNShape id="Participant_1vhrab3_di" bpmnElement="Participant_1vhrab3" isHorizontal="true">
+        <dc:Bounds x="160" y="80" width="560" height="450" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0iggm1h_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="210" y="273" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="191" y="316" width="74" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0qvm1nd_di" bpmnElement="Activity_06c4xbx">
+        <dc:Bounds x="301" y="251" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1o331zl_di" bpmnElement="Event_1o331zl">
+        <dc:Bounds x="602" y="273" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="583" y="316" width="81" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_17fmsha_di" bpmnElement="Flow_17fmsha">
+        <di:waypoint x="246" y="291" />
+        <di:waypoint x="301" y="291" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19p87qa_di" bpmnElement="Flow_19p87qa">
+        <di:waypoint x="401" y="291" />
+        <di:waypoint x="602" y="291" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
