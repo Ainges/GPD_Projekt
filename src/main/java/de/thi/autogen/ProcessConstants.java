@@ -1,4 +1,4 @@
-package de.thi;
+package de.thi.autogen;
 
 public class ProcessConstants {
 

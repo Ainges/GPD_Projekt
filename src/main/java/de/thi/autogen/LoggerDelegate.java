@@ -1,4 +1,4 @@
-package de.thi;
+package de.thi.autogen;
 
 import java.util.logging.Logger;
 
