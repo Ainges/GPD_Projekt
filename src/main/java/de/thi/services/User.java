@@ -1,6 +1,8 @@
 package de.thi.services;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private String vorname;
     private String nachname;
     private int alter;
@@ -8,6 +10,10 @@ public class User {
     private int mitgliedschaftsdauer;
     private String artDerAktivitaet;
     private boolean ehrenmitglied;
+
+
+    public User()  {
+    }
 
     public String getVorname() {
         return vorname;
