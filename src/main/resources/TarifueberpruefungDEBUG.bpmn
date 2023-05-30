@@ -11,23 +11,25 @@
         <bpmn:flowNodeRef>Activity_05ddci0</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1gdx795</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1o331zl</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0qbzte1</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0t4f0gn" name="Verantwortlicher">
         <bpmn:flowNodeRef>Event_0qluiaq</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0dk24aa</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Gateway_1bt1m9u</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:dataStoreReference id="DataStoreReference_0f5i7h6" name="Mitglieder Datenbank" />
     <bpmn:sequenceFlow id="Flow_17fmsha" sourceRef="StartEvent_1" targetRef="Activity_026m5f0" />
     <bpmn:sequenceFlow id="Flow_10gidr1" sourceRef="Activity_026m5f0" targetRef="Activity_05ddci0" />
     <bpmn:sequenceFlow id="Flow_14m8okx" sourceRef="Activity_05ddci0" targetRef="Event_1o331zl" />
-    <bpmn:sequenceFlow id="Flow_0vaz8p9" sourceRef="Event_1gdx795" targetRef="Activity_0dk24aa" />
+    <bpmn:sequenceFlow id="Flow_0vaz8p9" sourceRef="Event_1gdx795" targetRef="Gateway_1bt1m9u" />
     <bpmn:sequenceFlow id="Flow_0agv04x" sourceRef="Activity_0dk24aa" targetRef="Event_0qluiaq" />
     <bpmn:endEvent id="Event_0qluiaq" name="Situation geklärt">
       <bpmn:incoming>Flow_0agv04x</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:userTask id="Activity_0dk24aa" name="Situation klären">
-      <bpmn:incoming>Flow_0vaz8p9</bpmn:incoming>
+      <bpmn:incoming>Flow_1y3vk8n</bpmn:incoming>
       <bpmn:outgoing>Flow_0agv04x</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:startEvent id="StartEvent_1" name="Einmal pro Tag">
@@ -53,14 +55,26 @@
     </bpmn:callActivity>
     <bpmn:boundaryEvent id="Event_1gdx795" name="Neuer Beitrag wurde nicht akzeptiert" cancelActivity="false" attachedToRef="Activity_05ddci0">
       <bpmn:outgoing>Flow_0vaz8p9</bpmn:outgoing>
-      <bpmn:escalationEventDefinition id="EscalationEventDefinition_1hstrfl" escalationRef="Escalation_1t6urck" camunda:escalationCodeVariable="Code_beitragNichtAkzeptiert" />
+      <bpmn:escalationEventDefinition id="EscalationEventDefinition_1hstrfl" escalationRef="Escalation_1t6urck" camunda:escalationCodeVariable="code_beitragNichtAkzeptiert" />
     </bpmn:boundaryEvent>
     <bpmn:endEvent id="Event_1o331zl" name="Alle Mitglieder Tarife angepasst">
       <bpmn:incoming>Flow_14m8okx</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:boundaryEvent id="Event_0qbzte1" name="Mitglied wurde gesperrt" cancelActivity="false" attachedToRef="Activity_05ddci0">
+      <bpmn:outgoing>Flow_0abxdw8</bpmn:outgoing>
+      <bpmn:escalationEventDefinition id="EscalationEventDefinition_1mhxz0i" escalationRef="Escalation_1cmpqk8" camunda:escalationCodeVariable="code_mitgliedGesperrt" />
+    </bpmn:boundaryEvent>
+    <bpmn:sequenceFlow id="Flow_0abxdw8" sourceRef="Event_0qbzte1" targetRef="Gateway_1bt1m9u" />
+    <bpmn:sequenceFlow id="Flow_1y3vk8n" sourceRef="Gateway_1bt1m9u" targetRef="Activity_0dk24aa" />
+    <bpmn:exclusiveGateway id="Gateway_1bt1m9u">
+      <bpmn:incoming>Flow_0abxdw8</bpmn:incoming>
+      <bpmn:incoming>Flow_0vaz8p9</bpmn:incoming>
+      <bpmn:outgoing>Flow_1y3vk8n</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
   </bpmn:process>
   <bpmn:escalation id="Escalation_0unjf1c" name="Escalation_0unjf1c" />
   <bpmn:escalation id="Escalation_1t6urck" name="beitragNichtAkzeptiert" escalationCode="Das Mitglied ${vorname} hat den neuen Beitragssatz nicht akzeptiert!" />
+  <bpmn:escalation id="Escalation_1cmpqk8" name="mitgliedGesperrt" escalationCode="mitgliedGesperrt" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0hoznzq">
       <bpmndi:BPMNShape id="Participant_1vhrab3_di" bpmnElement="Participant_1vhrab3" isHorizontal="true">
@@ -104,10 +118,19 @@
           <dc:Bounds x="973" y="385" width="81" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1bt1m9u_di" bpmnElement="Gateway_1bt1m9u" isMarkerVisible="true">
+        <dc:Bounds x="615" y="545" width="50" height="50" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1gdx795_di" bpmnElement="Event_1gdx795">
         <dc:Bounds x="622" y="382" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="679" y="390" width="68" height="40" />
+          <dc:Bounds x="656" y="420" width="68" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0qbzte1_di" bpmnElement="Event_0qbzte1">
+        <dc:Bounds x="522" y="382" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="463.5" y="426" width="71" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_17fmsha_di" bpmnElement="Flow_17fmsha">
@@ -124,12 +147,20 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0vaz8p9_di" bpmnElement="Flow_0vaz8p9">
         <di:waypoint x="640" y="418" />
-        <di:waypoint x="640" y="570" />
-        <di:waypoint x="760" y="570" />
+        <di:waypoint x="640" y="545" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0agv04x_di" bpmnElement="Flow_0agv04x">
         <di:waypoint x="860" y="570" />
         <di:waypoint x="992" y="570" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0abxdw8_di" bpmnElement="Flow_0abxdw8">
+        <di:waypoint x="540" y="418" />
+        <di:waypoint x="540" y="570" />
+        <di:waypoint x="615" y="570" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1y3vk8n_di" bpmnElement="Flow_1y3vk8n">
+        <di:waypoint x="665" y="570" />
+        <di:waypoint x="760" y="570" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="DataStoreReference_0f5i7h6_di" bpmnElement="DataStoreReference_0f5i7h6">
         <dc:Bounds x="435" y="115" width="50" height="50" />
