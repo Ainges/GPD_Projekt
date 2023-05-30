@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_02wqr49" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
   <bpmn:collaboration id="Collaboration_0hoznzq">
-    <bpmn:participant id="Participant_1vhrab3" name="Mitglieder Verwaltung" processRef="PeriodischeTarifueberpruefungDEBUG" />
+    <bpmn:participant id="Participant_1vhrab3" name="Mitglieder Verwaltung" processRef="TarifueberpruefungDEBUG" />
   </bpmn:collaboration>
-  <bpmn:process id="PeriodischeTarifueberpruefungDEBUG" name="PeriodischeTarifueberpruefungDEBUG" isExecutable="true">
+  <bpmn:process id="TarifueberpruefungDEBUG" name="TarifueberpruefungDEBUG" isExecutable="true">
     <bpmn:startEvent id="StartEvent_1" name="Einmal pro Tag">
       <bpmn:outgoing>Flow_17fmsha</bpmn:outgoing>
     </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_17fmsha" sourceRef="StartEvent_1" targetRef="Activity_1k73fa8" />
+    <bpmn:sequenceFlow id="Flow_14m8okx" sourceRef="Activity_05ddci0" targetRef="Event_1o331zl" />
     <bpmn:endEvent id="Event_1o331zl" name="Alle Mitglieder Tarife angepasst">
-      <bpmn:incoming>Flow_1kdfjjq</bpmn:incoming>
+      <bpmn:incoming>Flow_14m8okx</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:userTask id="Activity_0olhw5o" name="Debug">
+    <bpmn:callActivity id="Activity_05ddci0" name="MultiTestProcess" calledElement="CalledProcessDEBUG">
+      <bpmn:extensionElements />
+      <bpmn:incoming>Flow_07t44l3</bpmn:incoming>
+      <bpmn:outgoing>Flow_14m8okx</bpmn:outgoing>
+      <bpmn:multiInstanceLoopCharacteristics camunda:collection="users" camunda:elementVariable="user" />
+    </bpmn:callActivity>
+    <bpmn:sequenceFlow id="Flow_07t44l3" sourceRef="Activity_1k73fa8" targetRef="Activity_05ddci0" />
+    <bpmn:userTask id="Activity_1k73fa8" name="DEBUG">
       <bpmn:extensionElements>
         <camunda:executionListener class="de.thi.services.ReadMember" event="start" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_17fmsha</bpmn:incoming>
-      <bpmn:outgoing>Flow_1kdfjjq</bpmn:outgoing>
+      <bpmn:outgoing>Flow_07t44l3</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:sequenceFlow id="Flow_17fmsha" sourceRef="StartEvent_1" targetRef="Activity_0olhw5o" />
-    <bpmn:sequenceFlow id="Flow_1kdfjjq" sourceRef="Activity_0olhw5o" targetRef="Event_1o331zl" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0hoznzq">
@@ -33,21 +40,29 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1o331zl_di" bpmnElement="Event_1o331zl">
-        <dc:Bounds x="552" y="173" width="36" height="36" />
+        <dc:Bounds x="622" y="173" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="533" y="216" width="81" height="27" />
+          <dc:Bounds x="603" y="216" width="81" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1pyaso1_di" bpmnElement="Activity_0olhw5o">
-        <dc:Bounds x="290" y="151" width="100" height="80" />
+      <bpmndi:BPMNShape id="Activity_0jftivm_di" bpmnElement="Activity_05ddci0">
+        <dc:Bounds x="490" y="151" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0lmtwij_di" bpmnElement="Activity_1k73fa8">
+        <dc:Bounds x="300" y="151" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_17fmsha_di" bpmnElement="Flow_17fmsha">
         <di:waypoint x="246" y="191" />
-        <di:waypoint x="290" y="191" />
+        <di:waypoint x="300" y="191" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1kdfjjq_di" bpmnElement="Flow_1kdfjjq">
-        <di:waypoint x="390" y="191" />
-        <di:waypoint x="552" y="191" />
+      <bpmndi:BPMNEdge id="Flow_14m8okx_di" bpmnElement="Flow_14m8okx">
+        <di:waypoint x="590" y="191" />
+        <di:waypoint x="622" y="191" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_07t44l3_di" bpmnElement="Flow_07t44l3">
+        <di:waypoint x="400" y="191" />
+        <di:waypoint x="490" y="191" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
