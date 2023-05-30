@@ -4,67 +4,82 @@
     <bpmn:participant id="Participant_1vhrab3" name="Mitglieder Verwaltung" processRef="TarifueberpruefungDEBUG" />
   </bpmn:collaboration>
   <bpmn:process id="TarifueberpruefungDEBUG" name="TarifueberpruefungDEBUG" isExecutable="true">
+    <bpmn:dataStoreReference id="DataStoreReference_0f5i7h6" name="Mitglieder Datenbank" />
     <bpmn:startEvent id="StartEvent_1" name="Einmal pro Tag">
       <bpmn:outgoing>Flow_17fmsha</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:sequenceFlow id="Flow_17fmsha" sourceRef="StartEvent_1" targetRef="Activity_1k73fa8" />
-    <bpmn:sequenceFlow id="Flow_14m8okx" sourceRef="Activity_05ddci0" targetRef="Event_1o331zl" />
     <bpmn:endEvent id="Event_1o331zl" name="Alle Mitglieder Tarife angepasst">
       <bpmn:incoming>Flow_14m8okx</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:callActivity id="Activity_05ddci0" name="MultiTestProcess" calledElement="CalledProcessDEBUG">
+    <bpmn:sequenceFlow id="Flow_17fmsha" sourceRef="StartEvent_1" targetRef="Activity_026m5f0" />
+    <bpmn:sequenceFlow id="Flow_14m8okx" sourceRef="Activity_05ddci0" targetRef="Event_1o331zl" />
+    <bpmn:callActivity id="Activity_05ddci0" name="Mitglieder Tarifänderung überprüfen" calledElement="TarifProzess">
       <bpmn:extensionElements>
         <camunda:in local="true" variables="all" />
       </bpmn:extensionElements>
-      <bpmn:incoming>Flow_07t44l3</bpmn:incoming>
+      <bpmn:incoming>Flow_10gidr1</bpmn:incoming>
       <bpmn:outgoing>Flow_14m8okx</bpmn:outgoing>
       <bpmn:multiInstanceLoopCharacteristics camunda:collection="users" camunda:elementVariable="user" />
     </bpmn:callActivity>
-    <bpmn:sequenceFlow id="Flow_07t44l3" sourceRef="Activity_1k73fa8" targetRef="Activity_05ddci0" />
-    <bpmn:userTask id="Activity_1k73fa8" name="DEBUG">
-      <bpmn:extensionElements>
-        <camunda:executionListener class="de.thi.services.ReadMember" event="start" />
-      </bpmn:extensionElements>
+    <bpmn:sequenceFlow id="Flow_10gidr1" sourceRef="Activity_026m5f0" targetRef="Activity_05ddci0" />
+    <bpmn:serviceTask id="Activity_026m5f0" name="Mitgliederdaten laden" camunda:class="de.thi.services.ReadMember">
+      <bpmn:extensionElements />
       <bpmn:incoming>Flow_17fmsha</bpmn:incoming>
-      <bpmn:outgoing>Flow_07t44l3</bpmn:outgoing>
-    </bpmn:userTask>
+      <bpmn:outgoing>Flow_10gidr1</bpmn:outgoing>
+      <bpmn:property id="Property_0r7ta6d" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1kcsh8s">
+        <bpmn:sourceRef>DataStoreReference_0f5i7h6</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0r7ta6d</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0hoznzq">
       <bpmndi:BPMNShape id="Participant_1vhrab3_di" bpmnElement="Participant_1vhrab3" isHorizontal="true">
-        <dc:Bounds x="160" y="80" width="560" height="220" />
+        <dc:Bounds x="160" y="220" width="560" height="220" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_160dz70_di" bpmnElement="StartEvent_1">
-        <dc:Bounds x="210" y="173" width="36" height="36" />
+        <dc:Bounds x="210" y="313" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="191" y="216" width="74" height="14" />
+          <dc:Bounds x="191" y="356" width="74" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1o331zl_di" bpmnElement="Event_1o331zl">
-        <dc:Bounds x="622" y="173" width="36" height="36" />
+        <dc:Bounds x="622" y="313" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="603" y="216" width="81" height="27" />
+          <dc:Bounds x="603" y="356" width="81" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0jftivm_di" bpmnElement="Activity_05ddci0">
-        <dc:Bounds x="490" y="151" width="100" height="80" />
+        <dc:Bounds x="450" y="291" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0lmtwij_di" bpmnElement="Activity_1k73fa8">
-        <dc:Bounds x="300" y="151" width="100" height="80" />
+      <bpmndi:BPMNShape id="Activity_0m5nqa7_di" bpmnElement="Activity_026m5f0">
+        <dc:Bounds x="310" y="291" width="100" height="80" />
+        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_17fmsha_di" bpmnElement="Flow_17fmsha">
-        <di:waypoint x="246" y="191" />
-        <di:waypoint x="300" y="191" />
+        <di:waypoint x="246" y="331" />
+        <di:waypoint x="310" y="331" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_14m8okx_di" bpmnElement="Flow_14m8okx">
-        <di:waypoint x="590" y="191" />
-        <di:waypoint x="622" y="191" />
+        <di:waypoint x="550" y="331" />
+        <di:waypoint x="622" y="331" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_07t44l3_di" bpmnElement="Flow_07t44l3">
-        <di:waypoint x="400" y="191" />
-        <di:waypoint x="490" y="191" />
+      <bpmndi:BPMNEdge id="Flow_10gidr1_di" bpmnElement="Flow_10gidr1">
+        <di:waypoint x="410" y="331" />
+        <di:waypoint x="450" y="331" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="DataStoreReference_0f5i7h6_di" bpmnElement="DataStoreReference_0f5i7h6">
+        <dc:Bounds x="335" y="115" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="336" y="85" width="54" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="DataInputAssociation_1kcsh8s_di" bpmnElement="DataInputAssociation_1kcsh8s">
+        <di:waypoint x="360" y="165" />
+        <di:waypoint x="360" y="291" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
