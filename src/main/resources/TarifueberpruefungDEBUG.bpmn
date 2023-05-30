@@ -13,7 +13,9 @@
       <bpmn:incoming>Flow_14m8okx</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:callActivity id="Activity_05ddci0" name="MultiTestProcess" calledElement="CalledProcessDEBUG">
-      <bpmn:extensionElements />
+      <bpmn:extensionElements>
+        <camunda:in local="true" variables="all" />
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_07t44l3</bpmn:incoming>
       <bpmn:outgoing>Flow_14m8okx</bpmn:outgoing>
       <bpmn:multiInstanceLoopCharacteristics camunda:collection="users" camunda:elementVariable="user" />

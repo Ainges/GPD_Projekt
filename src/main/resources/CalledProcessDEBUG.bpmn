@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1v7uuh5" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1v7uuh5" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.18.0">
   <bpmn:collaboration id="Collaboration_0pdec8s">
     <bpmn:participant id="Participant_1q8se7r" name="MultiTestProcess" processRef="CalledProcessDEBUG" />
   </bpmn:collaboration>
@@ -8,6 +8,9 @@
       <bpmn:outgoing>Flow_0ya71f6</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:userTask id="Activity_07c38qv" name="User ausgabe">
+      <bpmn:extensionElements>
+        <camunda:executionListener class="de.thi.services.OutputUser" event="start" />
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0ya71f6</bpmn:incoming>
       <bpmn:outgoing>Flow_1kkrhd5</bpmn:outgoing>
     </bpmn:userTask>
