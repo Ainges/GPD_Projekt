@@ -87,14 +87,13 @@ public class ReadMember implements JavaDelegate {
         for (User user: userArray){
             userList.add(user);
         }
-        // Serialize in Json. (Java Serialisation is prohibited)
-//        ObjectValue userListValue = Variables
-//                .objectValue(userList)
-//                .serializationDataFormat(Variables.SerializationDataFormats.JSON)
-//                .create();
-
-        // -> Hier ist die Java Serialisierung auch ok
+        // Serialize in Json.
+        // ObjectValue userListValue = Variables
+        //        .objectValue(userList)
+        //        .serializationDataFormat(Variables.SerializationDataFormats.JSON)
+        //        .create();
 
         execution.setVariable("users", userList);
+
     }
 }
