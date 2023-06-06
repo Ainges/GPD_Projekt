@@ -7,7 +7,6 @@
     <bpmn:laneSet id="LaneSet_1dfnblc">
       <bpmn:lane id="Lane_1g5ygpc" name="System">
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_07c38qv</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0fww5v3</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0dtjeo7</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1dukpce</bpmn:flowNodeRef>
@@ -18,6 +17,7 @@
         <bpmn:flowNodeRef>Event_1x32mqp</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0lc6407</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0dh1tit</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_07c38qv</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_0zvwglm" name="Betroffenes Mitglied">
         <bpmn:flowNodeRef>Event_1h0kjru</bpmn:flowNodeRef>
@@ -38,17 +38,6 @@
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_0ya71f6</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:serviceTask id="Activity_07c38qv" name="Mitglied Einlesen" camunda:class="de.thi.services.OutputUser">
-      <bpmn:documentation>bzw. die Attribute des Nutzers in den Prozesskontext schreiben.</bpmn:documentation>
-      <bpmn:extensionElements />
-      <bpmn:incoming>Flow_0ya71f6</bpmn:incoming>
-      <bpmn:outgoing>Flow_1kkrhd5</bpmn:outgoing>
-      <bpmn:property id="Property_14qaklv" name="__targetRef_placeholder" />
-      <bpmn:dataInputAssociation id="DataInputAssociation_1olus19">
-        <bpmn:sourceRef>mitgliederdaten_in</bpmn:sourceRef>
-        <bpmn:targetRef>Property_14qaklv</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-    </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_0ya71f6" sourceRef="StartEvent_1" targetRef="Activity_07c38qv" />
     <bpmn:exclusiveGateway id="Gateway_0fww5v3" name="Neuer Beitrag bereits in Bearbeitung?">
       <bpmn:incoming>Flow_1kkrhd5</bpmn:incoming>
@@ -134,7 +123,7 @@
       <bpmn:outgoing>Flow_0onlcpx</bpmn:outgoing>
       <bpmn:outgoing>Flow_16b452x</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:endEvent id="Event_1x32mqp" name="DEBUG Beitrag hat sich geändert">
+    <bpmn:endEvent id="Event_1x32mqp" name="Beitrag hat sich geändert">
       <bpmn:extensionElements>
         <camunda:executionListener expression="${neuerBeitrag == false}" event="start" />
       </bpmn:extensionElements>
@@ -153,15 +142,20 @@
     </bpmn:endEvent>
     <bpmn:dataObjectReference id="DataObjectReference_0kgeqx0" name="Daten des Mitglieds" dataObjectRef="DataObject_0d94ky0" />
     <bpmn:dataObject id="DataObject_0d94ky0" />
+    <bpmn:userTask id="Activity_07c38qv" name="Tariffindung">
+      <bpmn:documentation>bzw. die Attribute des Nutzers in den Prozesskontext schreiben.</bpmn:documentation>
+      <bpmn:incoming>Flow_0ya71f6</bpmn:incoming>
+      <bpmn:outgoing>Flow_1kkrhd5</bpmn:outgoing>
+      <bpmn:property id="Property_0ls5upo" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_1olus19">
+        <bpmn:sourceRef>mitgliederdaten_in</bpmn:sourceRef>
+        <bpmn:targetRef>Property_0ls5upo</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:userTask>
     <bpmn:textAnnotation id="TextAnnotation_0p5mng7">
       <bpmn:text>Durch DRD Ersetzen</bpmn:text>
     </bpmn:textAnnotation>
     <bpmn:association id="Association_1hovuod" sourceRef="Activity_0dtjeo7" targetRef="TextAnnotation_0p5mng7" />
-    <bpmn:textAnnotation id="TextAnnotation_1du784i">
-      <bpmn:text>Hier muss noch irgendwie übergeben werden, welches Mitglied nicht akzeptiert hat</bpmn:text>
-    </bpmn:textAnnotation>
-    <bpmn:association id="Association_0bqpu7a" sourceRef="Event_1h0kjru" targetRef="TextAnnotation_1du784i" />
-    <bpmn:association id="Association_0brc733" sourceRef="TextAnnotation_1du784i" targetRef="Event_0dh1tit" />
   </bpmn:process>
   <bpmn:escalation id="Escalation_0n4tciu" name="beitragNichtAkzeptiert" escalationCode="Das Mitglied ${vorname} hat den neuen Beitragssatz nicht akzeptiert!" />
   <bpmn:error id="Error_0mk5svx" name="mitgliedGesperrt" errorCode="mitgliedGesperrt" />
@@ -179,16 +173,8 @@
         <dc:Bounds x="159" y="90" width="1739" height="410" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="TextAnnotation_1du784i_di" bpmnElement="TextAnnotation_1du784i">
-        <dc:Bounds x="1335" y="565" width="240" height="90" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="202" y="282" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_13tw7a4_di" bpmnElement="Activity_07c38qv">
-        <dc:Bounds x="310" y="260" width="100" height="80" />
-        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0fww5v3_di" bpmnElement="Gateway_0fww5v3" isMarkerVisible="true">
         <dc:Bounds x="475" y="275" width="50" height="50" />
@@ -228,10 +214,6 @@
           <dc:Bounds x="1176" y="595" width="68" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="TextAnnotation_0p5mng7_di" bpmnElement="TextAnnotation_0p5mng7">
-        <dc:Bounds x="610" y="400" width="100" height="41" />
-        <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="DataObjectReference_0doc6kk_di" bpmnElement="mitgliederdaten_in">
         <dc:Bounds x="202" y="145" width="36" height="50" />
         <bpmndi:BPMNLabel>
@@ -255,7 +237,7 @@
       <bpmndi:BPMNShape id="Event_1x32mqp_di" bpmnElement="Event_1x32mqp">
         <dc:Bounds x="1192" y="422" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1171" y="465" width="85" height="27" />
+          <dc:Bounds x="1176" y="465" width="76" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1mr6jhf_di" bpmnElement="Activity_0lc6407">
@@ -273,14 +255,13 @@
           <dc:Bounds x="1524" y="336" width="51" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Association_0bqpu7a_di" bpmnElement="Association_0bqpu7a">
-        <di:waypoint x="1228" y="569" />
-        <di:waypoint x="1335" y="568" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Association_0brc733_di" bpmnElement="Association_0brc733">
-        <di:waypoint x="1550" y="565" />
-        <di:waypoint x="1550" y="458" />
-      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="TextAnnotation_0p5mng7_di" bpmnElement="TextAnnotation_0p5mng7">
+        <dc:Bounds x="610" y="400" width="100" height="41" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0viunsk_di" bpmnElement="Activity_07c38qv">
+        <dc:Bounds x="310" y="260" width="100" height="80" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_04itot6_di" bpmnElement="Event_04itot6">
         <dc:Bounds x="962" y="592" width="36" height="36" />
         <bpmndi:BPMNLabel>

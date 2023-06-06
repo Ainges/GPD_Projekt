@@ -29,6 +29,8 @@ public class OutputUser implements JavaDelegate {
 
         //DEBUG
         Boolean neuerBeitrag = false;
+        //
+
         execution.setVariableLocal("neuerBeitrag", neuerBeitrag);
 
     }
