@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="Definitions_1j6cp41" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="Definitions_1j6cp41" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
   <decision id="Decision_0wgehn3" name="Berechnung des Monatlichen Beitrags">
     <informationRequirement id="InformationRequirement_09u5shd">
       <requiredInput href="#InputData_1txpc7n" />
@@ -17,7 +17,7 @@
       <requiredInput href="#InputData_0oxn2wp" />
     </informationRequirement>
     <decisionTable id="DecisionTable_0yd8009">
-      <input id="Input_1" label="Alter" camunda:inputVariable="alter">
+      <input id="Input_1" label="Alter" biodi:width="192" camunda:inputVariable="alter">
         <inputExpression id="InputExpression_1" typeRef="integer">
           <text>Alter</text>
         </inputExpression>
@@ -27,7 +27,7 @@
           <text>Dauer</text>
         </inputExpression>
       </input>
-      <input id="InputClause_153gt0z" label="Art der Mitgliedschaft" camunda:inputVariable="mitgliedschaft">
+      <input id="InputClause_153gt0z" label="Art der Mitgliedschaft" biodi:width="192" camunda:inputVariable="mitgliedschaft">
         <inputExpression id="LiteralExpression_1lgk48g" typeRef="string">
           <text>Mitgliedschaft</text>
         </inputExpression>
@@ -35,7 +35,7 @@
           <text>"Aktiv"</text>
         </inputValues>
       </input>
-      <input id="InputClause_0h6948a" label="Art der Aktivität" camunda:inputVariable="aktivität">
+      <input id="InputClause_0h6948a" label="Art der Aktivität" biodi:width="192" camunda:inputVariable="artDerAktivitaet">
         <inputExpression id="LiteralExpression_05lzql9" typeRef="string">
           <text>Aktivitäten</text>
         </inputExpression>
