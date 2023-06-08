@@ -28,12 +28,6 @@ public class OutputUser implements JavaDelegate {
         execution.setVariableLocal("beitragsanpassungGestartet", user.isBeitragsanpassungGestartet());
         execution.setVariableLocal("beitrag", user.getBeitrag());
 
-        //DEBUG
-        Boolean neuerBeitrag = false;
-        //
-
-        execution.setVariableLocal("neuerBeitrag", neuerBeitrag);
-
     }
 
 

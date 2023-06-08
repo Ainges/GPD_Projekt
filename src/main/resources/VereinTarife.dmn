@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="Definitions_1j6cp41" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
-  <decision id="Decision_0wgehn3" name="Berechnung des Monatlichen Beitrags">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="beitragberechnenDRD" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
+  <decision id="beitragBerechnen" name="Berechnung des Monatlichen Beitrags">
     <informationRequirement id="InformationRequirement_09u5shd">
       <requiredInput href="#InputData_1txpc7n" />
     </informationRequirement>
@@ -19,17 +19,17 @@
     <decisionTable id="DecisionTable_0yd8009">
       <input id="Input_1" label="Alter" biodi:width="192" camunda:inputVariable="alter">
         <inputExpression id="InputExpression_1" typeRef="integer">
-          <text>Alter</text>
+          <text>alter</text>
         </inputExpression>
       </input>
       <input id="InputClause_1uogrl1" label="Mitgliedschaftsdauer" camunda:inputVariable="mitgliedschaftsdauer">
         <inputExpression id="LiteralExpression_1e9qr9b" typeRef="integer">
-          <text>Dauer</text>
+          <text>mitgliedschaftsdauer</text>
         </inputExpression>
       </input>
       <input id="InputClause_153gt0z" label="Art der Mitgliedschaft" biodi:width="192" camunda:inputVariable="mitgliedschaft">
         <inputExpression id="LiteralExpression_1lgk48g" typeRef="string">
-          <text>Mitgliedschaft</text>
+          <text>mitgliedschaft</text>
         </inputExpression>
         <inputValues id="UnaryTests_0er9slk">
           <text>"Aktiv"</text>
@@ -37,7 +37,7 @@
       </input>
       <input id="InputClause_0h6948a" label="Art der Aktivität" biodi:width="192" camunda:inputVariable="artDerAktivitaet">
         <inputExpression id="LiteralExpression_05lzql9" typeRef="string">
-          <text>Aktivitäten</text>
+          <text>artDerAktivitaet</text>
         </inputExpression>
         <inputValues id="UnaryTests_12g2alv">
           <text>""</text>
@@ -45,10 +45,10 @@
       </input>
       <input id="InputClause_19r63cs" label="Ehrenmitglied" camunda:inputVariable="ehrenmitglied">
         <inputExpression id="LiteralExpression_02licin" typeRef="boolean">
-          <text>Ehrenmitglied</text>
+          <text>ehrenmitglied</text>
         </inputExpression>
       </input>
-      <output id="Output_1" label="Beitrag in €" name="Beitrag" typeRef="integer" />
+      <output id="Output_1" label="Beitrag in €" name="beitrag" typeRef="integer" />
       <rule id="DecisionRule_0eyftiq">
         <description>Kostenloser Kindertarif</description>
         <inputEntry id="UnaryTests_1goy7d8">
@@ -240,14 +240,14 @@
       </rule>
     </decisionTable>
   </decision>
-  <inputData id="InputData_1txpc7n" name="Alter" />
-  <inputData id="InputData_1qc3qxq" name="Mitgliedschaftsdauer" />
-  <inputData id="InputData_1jq7yv4" name="Art der Mitgliedschaft" />
-  <inputData id="InputData_1760k4c" name="Art der Aktivitäten" />
-  <inputData id="InputData_0oxn2wp" name="Ehrenmitglied" />
+  <inputData id="InputData_1txpc7n" name="alter" />
+  <inputData id="InputData_1qc3qxq" name="mitgliedschaftsdauer" />
+  <inputData id="InputData_1jq7yv4" name="mitgliedschaft" />
+  <inputData id="InputData_1760k4c" name="artDerAktivitaet" />
+  <inputData id="InputData_0oxn2wp" name="ehrenmitglied" />
   <dmndi:DMNDI>
     <dmndi:DMNDiagram>
-      <dmndi:DMNShape dmnElementRef="Decision_0wgehn3">
+      <dmndi:DMNShape dmnElementRef="beitragBerechnen">
         <dc:Bounds height="80" width="180" x="370" y="80" />
       </dmndi:DMNShape>
       <dmndi:DMNShape id="DMNShape_13iyk0y" dmnElementRef="InputData_1txpc7n">

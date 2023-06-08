@@ -62,11 +62,12 @@
         <camunda:in source="mitgliedschaft" target="mitgliedschaft" />
         <camunda:in source="vorname" target="vorname" />
         <camunda:in source="ehrenmitglied" target="ehrenmitglied" />
-        <camunda:in source="neuerBeitrag" target="neuerBeitrag" />
         <camunda:in source="nachname" target="nachname" />
         <camunda:in source="mitgliedschaftsdauer" target="mitgliedschaftsdauer" />
         <camunda:in source="artDerAktivitaet" target="artDerAktivitaet" />
         <camunda:in source="BeitragsanpassungGestartet" target="BeitragsanpassungGestartet" />
+        <camunda:in source="alter" target="alter" />
+        <camunda:in source="beitrag" target="beitrag" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0a8wq1c</bpmn:incoming>
       <bpmn:outgoing>Flow_18rt0qw</bpmn:outgoing>
