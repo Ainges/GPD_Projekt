@@ -22,8 +22,8 @@
       <bpmn:lane id="Lane_0zvwglm" name="Betroffenes Mitglied">
         <bpmn:flowNodeRef>Event_1h0kjru</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0jgtiy9</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Event_04itot6</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0j7mxgl</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_04itot6</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:sequenceFlow id="Flow_1kkrhd5" sourceRef="Activity_07c38qv" targetRef="Gateway_0fww5v3" />
@@ -163,14 +163,14 @@
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0pdec8s">
       <bpmndi:BPMNShape id="Participant_1q8se7r_di" bpmnElement="Participant_1q8se7r" isHorizontal="true">
-        <dc:Bounds x="129" y="90" width="1769" height="740" />
+        <dc:Bounds x="129" y="90" width="1551" height="660" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_0zvwglm_di" bpmnElement="Lane_0zvwglm" isHorizontal="true">
-        <dc:Bounds x="159" y="500" width="1739" height="330" />
+        <dc:Bounds x="159" y="500" width="1521" height="250" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_1g5ygpc_di" bpmnElement="Lane_1g5ygpc" isHorizontal="true">
-        <dc:Bounds x="159" y="90" width="1739" height="410" />
+        <dc:Bounds x="159" y="90" width="1521" height="410" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">

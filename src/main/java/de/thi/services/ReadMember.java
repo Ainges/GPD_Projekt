@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,51 +31,56 @@ public class ReadMember implements JavaDelegate {
                        "vorname": "Max",
                        "nachname": "Mustermann",
                        "alter": 30,
-                       "mitgliedschaft": "Premium",
+                       "mitgliedschaft": "Aktiv",
                        "mitgliedschaftsdauer": 2,
                        "artDerAktivitaet": "Freizeit",
                        "ehrenmitglied": false,
-                       "BeitragsanpassungGestartet": false
+                       "BeitragsanpassungGestartet": false,
+                       "beitrag" : 1
                      },
                      {
                        "vorname": "Anna",
                        "nachname": "Schmidt",
                        "alter": 25,
-                       "mitgliedschaft": "Standard",
+                       "mitgliedschaft": "Aktiv",
                        "mitgliedschaftsdauer": 1,
                        "artDerAktivitaet": "Wettkampf",
-                       "ehrenmitglied": true,
-                       "BeitragsanpassungGestartet": false
+                       "ehrenmitglied": false,
+                       "beitragsanpassungGestartet": false,
+                       "beitrag" : 1
                      },
                      {
                        "vorname": "Michael",
                        "nachname": "Müller",
                        "alter": 40,
-                       "mitgliedschaft": "Premium",
+                       "mitgliedschaft": "Passiv",
                        "mitgliedschaftsdauer": 3,
                        "artDerAktivitaet": "Freizeit",
-                       "ehrenmitglied": false,
-                       "BeitragsanpassungGestartet": false
+                       "ehrenmitglied": true,
+                       "beitragsanpassungGestartet": false,
+                       "beitrag" : 1
                      },
                      {
                        "vorname": "Julia",
                        "nachname": "Schneider",
                        "alter": 35,
-                       "mitgliedschaft": "Standard",
+                       "mitgliedschaft": "Aktiv",
                        "mitgliedschaftsdauer": 2,
                        "artDerAktivitaet": "Wettkampf",
                        "ehrenmitglied": false,
-                       "BeitragsanpassungGestartet": true
+                       "beitragsanpassungGestartet": true,
+                       "beitrag" : 1
                      },
                      {
                        "vorname": "Thomas",
                        "nachname": "Fischer",
                        "alter": 28,
-                       "mitgliedschaft": "Premium",
+                       "mitgliedschaft": "Aktiv",
                        "mitgliedschaftsdauer": 1,
                        "artDerAktivitaet": "Freizeit",
-                       "ehrenmitglied": true,
-                       "BeitragsanpassungGestartet": false
+                       "ehrenmitglied": false,
+                       "beitragsanpassungGestartet": false,
+                       "beitrag" : 1
                      }
                    ]
                    
@@ -84,9 +90,7 @@ public class ReadMember implements JavaDelegate {
         User[] userArray = gson.fromJson(userString, User[].class);
 
         List<User> userList = new ArrayList<>();
-        for (User user: userArray){
-            userList.add(user);
-        }
+        Collections.addAll(userList, userArray);
         // Serialize in Json.
         // ObjectValue userListValue = Variables
         //        .objectValue(userList)

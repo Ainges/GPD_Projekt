@@ -25,7 +25,8 @@ public class OutputUser implements JavaDelegate {
         execution.setVariableLocal("mitgliedschaftsdauer", user.getMitgliedschaftsdauer());
         execution.setVariableLocal("artDerAktivitaet", user.getArtDerAktivitaet());
         execution.setVariableLocal("ehrenmitglied", user.isEhrenmitglied());
-        execution.setVariableLocal("BeitragsanpassungGestartet", user.isBeitragsanpassungGestartet());
+        execution.setVariableLocal("beitragsanpassungGestartet", user.isBeitragsanpassungGestartet());
+        execution.setVariableLocal("beitrag", user.getBeitrag());
 
         //DEBUG
         Boolean neuerBeitrag = false;

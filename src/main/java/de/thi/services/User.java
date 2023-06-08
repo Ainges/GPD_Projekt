@@ -10,7 +10,8 @@ public class User implements Serializable {
     private int mitgliedschaftsdauer;
     private String artDerAktivitaet;
     private boolean ehrenmitglied;
-    private boolean BeitragsanpassungGestartet;
+    private boolean beitragsanpassungGestartet;
+    private int beitrag;
 
 
     public User()  {
@@ -73,10 +74,18 @@ public class User implements Serializable {
     }
 
     public boolean isBeitragsanpassungGestartet() {
-        return BeitragsanpassungGestartet;
+        return beitragsanpassungGestartet;
     }
 
     public void setBeitragsanpassungGestartet(boolean beitragsanpassungGestartet) {
-        BeitragsanpassungGestartet = beitragsanpassungGestartet;
+        this.beitragsanpassungGestartet = beitragsanpassungGestartet;
+    }
+
+    public int getBeitrag() {
+        return beitrag;
+    }
+
+    public void setBeitrag(int beitrag) {
+        this.beitrag = beitrag;
     }
 }
