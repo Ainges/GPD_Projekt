@@ -1,0 +1,45 @@
+{
+  "components": [
+    {
+      "text": "<h1>Ihr Beitrag hat sich geändert!</h1>",
+      "type": "text",
+      "id": "Field_10x7vgx"
+    },
+    {
+      "label": "Alter Beitrag",
+      "type": "textfield",
+      "id": "Field_01ud60w",
+      "key": "beitrag",
+      "disabled": true,
+      "description": "Der bisherige Beitrag"
+    },
+    {
+      "label": "Neuer Beitrag",
+      "type": "textfield",
+      "id": "Field_1tgpc59",
+      "key": "beitragNEW",
+      "description": "Der ab jetzt festgesetzte Beitrag",
+      "disabled": true
+    },
+    {
+      "label": "Akzeptieren Sie den neuen Beitrag?",
+      "type": "checkbox",
+      "id": "Field_0frnv4m",
+      "key": "bestaetigungMitglied"
+    },
+    {
+      "text": "<h5> Bitte beachten Sie, dass Sie den neuen Beitrag innerhalb von 7 Tagen entweder akzeptieren oder ablehenn müssen, da ihr Account sonst gesperrt wird!</h5>",
+      "type": "text",
+      "id": "Field_1ofgc1o"
+    }
+  ],
+  "type": "default",
+  "id": "userTaskNeuerBeitrag",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.9.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.17.0",
+  "schemaVersion": 7
+}

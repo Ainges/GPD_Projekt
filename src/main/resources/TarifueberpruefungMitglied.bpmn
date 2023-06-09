@@ -72,11 +72,12 @@
       <bpmn:incoming>Flow_0a8wq1c</bpmn:incoming>
       <bpmn:outgoing>Flow_18rt0qw</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:userTask id="Activity_0dk24aa" name="Situation klären">
+    <bpmn:userTask id="Activity_0dk24aa" name="Situation klären" camunda:formRef="userTaskSituationklaeren" camunda:formRefBinding="latest">
       <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="situationGelaert" label="Bitte hier Abhaken, wenn die Situation geklärt wurde." type="boolean" />
-        </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="vorname">${vorname}</camunda:inputParameter>
+          <camunda:inputParameter name="nachname">${nachname}</camunda:inputParameter>
+        </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1y3vk8n</bpmn:incoming>
       <bpmn:outgoing>Flow_0agv04x</bpmn:outgoing>

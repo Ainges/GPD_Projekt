@@ -1,0 +1,38 @@
+{
+  "components": [
+    {
+      "text": "<h1> Eine automatische Beitragsanpassung konnte nicht durchgeführt werden! </p>",
+      "type": "text",
+      "id": "Field_1o9w0il"
+    },
+    {
+      "label": "Name des Mitglieds",
+      "type": "textfield",
+      "id": "Field_066e7d9",
+      "key": "nachname",
+      "disabled": true
+    },
+    {
+      "label": "Vorname des Mitglieds",
+      "type": "textfield",
+      "id": "Field_10mtrjf",
+      "key": "vorname",
+      "disabled": true
+    },
+    {
+      "label": "Hier erst abhaken, wenn die Situation geklärt werden konnte.",
+      "type": "checkbox",
+      "id": "Field_1wqbuxv",
+      "key": "field_0m8jds6"
+    }
+  ],
+  "type": "default",
+  "id": "userTaskSituationklaeren",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.9.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.18.0",
+  "schemaVersion": 7
+}

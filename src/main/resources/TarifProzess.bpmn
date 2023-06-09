@@ -9,7 +9,6 @@
         <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_0fww5v3</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_16wyftw</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_07c38qv</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0dtjeo7</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1dukpce</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_148qcof</bpmn:flowNodeRef>
@@ -27,7 +26,6 @@
         <bpmn:flowNodeRef>Event_04itot6</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:sequenceFlow id="Flow_1kkrhd5" sourceRef="Activity_07c38qv" targetRef="Gateway_0fww5v3" />
     <bpmn:sequenceFlow id="Flow_14wa1ht" name="nein" sourceRef="Gateway_0fww5v3" targetRef="Activity_0dtjeo7">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!BeitragsanpassungGestartet}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
@@ -37,11 +35,10 @@
     <bpmn:sequenceFlow id="Flow_06yceio" sourceRef="Activity_0dtjeo7" targetRef="Activity_12xm5em" />
     <bpmn:sequenceFlow id="Flow_18defbj" sourceRef="Activity_16wyftw" targetRef="Event_1szjw93" />
     <bpmn:startEvent id="StartEvent_1">
-      <bpmn:outgoing>Flow_0ya71f6</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1c0u4fa</bpmn:outgoing>
     </bpmn:startEvent>
-    <bpmn:sequenceFlow id="Flow_0ya71f6" sourceRef="StartEvent_1" targetRef="Activity_07c38qv" />
     <bpmn:exclusiveGateway id="Gateway_0fww5v3" name="Neuer Beitrag bereits in Bearbeitung?">
-      <bpmn:incoming>Flow_1kkrhd5</bpmn:incoming>
+      <bpmn:incoming>Flow_1c0u4fa</bpmn:incoming>
       <bpmn:outgoing>Flow_14wa1ht</bpmn:outgoing>
       <bpmn:outgoing>Flow_019w249</bpmn:outgoing>
     </bpmn:exclusiveGateway>
@@ -61,25 +58,18 @@
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0ha3k6s" sourceRef="Event_04itot6" targetRef="Activity_0lc6407" />
     <bpmn:sequenceFlow id="Flow_1fegly5" sourceRef="Activity_0lc6407" targetRef="Event_0dh1tit" />
-    <bpmn:dataObjectReference id="mitgliederdaten_in" name="Daten des Mitglieds" dataObjectRef="DataObject_1r9ko75" />
-    <bpmn:dataObject id="DataObject_1r9ko75" />
     <bpmn:userTask id="Activity_16wyftw" name="DEBUG Neuer Beitrag bereits in Bearbeitung">
       <bpmn:incoming>Flow_019w249</bpmn:incoming>
       <bpmn:outgoing>Flow_18defbj</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:userTask id="Activity_07c38qv" name="Tariffindung">
-      <bpmn:documentation>bzw. die Attribute des Nutzers in den Prozesskontext schreiben.</bpmn:documentation>
-      <bpmn:incoming>Flow_0ya71f6</bpmn:incoming>
-      <bpmn:outgoing>Flow_1kkrhd5</bpmn:outgoing>
-      <bpmn:property id="Property_0ls5upo" name="__targetRef_placeholder" />
-      <bpmn:dataInputAssociation id="DataInputAssociation_1olus19">
-        <bpmn:sourceRef>mitgliederdaten_in</bpmn:sourceRef>
-        <bpmn:targetRef>Property_0ls5upo</bpmn:targetRef>
-      </bpmn:dataInputAssociation>
-    </bpmn:userTask>
-    <bpmn:businessRuleTask id="Activity_0dtjeo7" name="Beitag ermitteln" camunda:resultVariable="beitrag_NEW" camunda:decisionRef="beitragBerechnen" camunda:mapDecisionResult="singleEntry">
+    <bpmn:businessRuleTask id="Activity_0dtjeo7" name="Beitag ermitteln" camunda:resultVariable="beitragNEW" camunda:decisionRef="beitragBerechnen" camunda:mapDecisionResult="singleEntry">
       <bpmn:incoming>Flow_14wa1ht</bpmn:incoming>
       <bpmn:outgoing>Flow_06yceio</bpmn:outgoing>
+      <bpmn:property id="Property_18ls8c6" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DataInputAssociation_03zg2qn">
+        <bpmn:sourceRef>mitgliederdaten_in</bpmn:sourceRef>
+        <bpmn:targetRef>Property_18ls8c6</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
     </bpmn:businessRuleTask>
     <bpmn:exclusiveGateway id="Gateway_1dukpce" name="Beitrag geändert?">
       <bpmn:incoming>Flow_08zbedm</bpmn:incoming>
@@ -101,16 +91,14 @@
       <bpmn:incoming>Flow_16b452x</bpmn:incoming>
       <bpmn:escalationEventDefinition id="EscalationEventDefinition_1bjl7ne" escalationRef="Escalation_0n4tciu" />
     </bpmn:endEvent>
-    <bpmn:userTask id="Activity_0jgtiy9" name="Neuen Beitrag bestätigen">
+    <bpmn:userTask id="Activity_0jgtiy9" name="Neuen Beitrag bestätigen" camunda:formRef="userTaskNeuerBeitrag" camunda:formRefBinding="latest">
       <bpmn:documentation>Falls der Beitrag nicht innerhalb von 7 Tagen gestartet wird, wird der Nutzer gesperrt.</bpmn:documentation>
       <bpmn:extensionElements>
-        <camunda:formData>
-          <camunda:formField id="bestaetigungMitglied" label="Akzeptieren Sie den neuen Beitrag?" type="boolean">
-            <camunda:properties />
-            <camunda:validation />
-          </camunda:formField>
-        </camunda:formData>
-        <camunda:executionListener expression="${neuerBeitrag == true}" event="start" />
+        <camunda:inputOutput>
+          <camunda:inputParameter name="beitrag">${beitrag}</camunda:inputParameter>
+          <camunda:inputParameter name="beitragNEW">${beitragNEW}</camunda:inputParameter>
+          <camunda:outputParameter name="bestaetigungMitglied">${bestaetigungMitglied}</camunda:outputParameter>
+        </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1nwys22</bpmn:incoming>
       <bpmn:outgoing>Flow_07flse1</bpmn:outgoing>
@@ -142,24 +130,28 @@
     </bpmn:endEvent>
     <bpmn:dataObjectReference id="DataObjectReference_0kgeqx0" name="Daten des Mitglieds" dataObjectRef="DataObject_0d94ky0" />
     <bpmn:dataObject id="DataObject_0d94ky0" />
-    <bpmn:boundaryEvent id="Event_04itot6" name="7 Tage" attachedToRef="Activity_0jgtiy9">
+    <bpmn:boundaryEvent id="Event_04itot6" name="7 Tage (DEBUG 15sec!)" attachedToRef="Activity_0jgtiy9">
       <bpmn:outgoing>Flow_0ha3k6s</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_07b4fo4">
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT15S</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">P7D</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:boundaryEvent>
     <bpmn:sequenceFlow id="Flow_08zbedm" sourceRef="Activity_12xm5em" targetRef="Gateway_1dukpce" />
     <bpmn:scriptTask id="Activity_12xm5em" name="Beitrag Änderung prüfen" scriptFormat="JavaScript" camunda:resultVariable="TestVar">
+      <bpmn:documentation>Der ermittelte Beitrag und der Ursprünglich werden auf Gleichheit überprüft. </bpmn:documentation>
       <bpmn:incoming>Flow_06yceio</bpmn:incoming>
       <bpmn:outgoing>Flow_08zbedm</bpmn:outgoing>
       <bpmn:script>var beitrag = execution.getVariable("beitrag");
-var beitrag_new = execution.getVariable("beitrag_new");
-var neuerBeitrag = !(beitrag == beitrag_new);
+var beitrag_new = execution.getVariable("beitragNEW");
+var neuerBeitrag = !(beitrag == beitragNEW);
 
 console.log("Der Wert von neuerBeitrag ist: " + neuerBeitrag);
 
 execution.setVariable("neuerBeitrag", neuerBeitrag);</bpmn:script>
     </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_1c0u4fa" sourceRef="StartEvent_1" targetRef="Gateway_0fww5v3" />
+    <bpmn:dataObjectReference id="mitgliederdaten_in" name="Daten des Mitglieds" dataObjectRef="DataObject_1r9ko75" />
+    <bpmn:dataObject id="DataObject_1r9ko75" />
   </bpmn:process>
   <bpmn:escalation id="Escalation_0n4tciu" name="beitragNichtAkzeptiert" escalationCode="Das Mitglied hat den neuen Beitragssatz nicht akzeptiert!" />
   <bpmn:error id="Error_0mk5svx" name="mitgliedGesperrt" errorCode="mitgliedGesperrt" />
@@ -186,18 +178,9 @@ execution.setVariable("neuerBeitrag", neuerBeitrag);</bpmn:script>
           <dc:Bounds x="466" y="335" width="68" height="40" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_0doc6kk_di" bpmnElement="mitgliederdaten_in">
-        <dc:Bounds x="202" y="145" width="36" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="196" y="202" width="51" height="27" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_01cxe0x_di" bpmnElement="Activity_16wyftw">
         <dc:Bounds x="610" y="100" width="100" height="80" />
         <bpmndi:BPMNLabel />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0viunsk_di" bpmnElement="Activity_07c38qv">
-        <dc:Bounds x="310" y="260" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1c8emlt_di" bpmnElement="Activity_0dtjeo7">
         <dc:Bounds x="610" y="260" width="100" height="80" />
@@ -265,16 +248,18 @@ execution.setVariable("neuerBeitrag", neuerBeitrag);</bpmn:script>
       <bpmndi:BPMNShape id="Activity_1ic59dm_di" bpmnElement="Activity_12xm5em">
         <dc:Bounds x="810" y="260" width="100" height="80" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DataObjectReference_0doc6kk_di" bpmnElement="mitgliederdaten_in">
+        <dc:Bounds x="202" y="395" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="196" y="452" width="51" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_04itot6_di" bpmnElement="Event_04itot6">
         <dc:Bounds x="1212" y="592" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1258" y="603" width="33" height="14" />
+          <dc:Bounds x="1236" y="636" width="79" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_1kkrhd5_di" bpmnElement="Flow_1kkrhd5">
-        <di:waypoint x="410" y="300" />
-        <di:waypoint x="475" y="300" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_14wa1ht_di" bpmnElement="Flow_14wa1ht">
         <di:waypoint x="525" y="300" />
         <di:waypoint x="610" y="300" />
@@ -297,10 +282,6 @@ execution.setVariable("neuerBeitrag", neuerBeitrag);</bpmn:script>
       <bpmndi:BPMNEdge id="Flow_18defbj_di" bpmnElement="Flow_18defbj">
         <di:waypoint x="710" y="140" />
         <di:waypoint x="1442" y="140" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0ya71f6_di" bpmnElement="Flow_0ya71f6">
-        <di:waypoint x="238" y="300" />
-        <di:waypoint x="310" y="300" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0q9shc6_di" bpmnElement="Flow_0q9shc6">
         <di:waypoint x="1065" y="300" />
@@ -355,6 +336,10 @@ execution.setVariable("neuerBeitrag", neuerBeitrag);</bpmn:script>
         <di:waypoint x="910" y="300" />
         <di:waypoint x="1015" y="300" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1c0u4fa_di" bpmnElement="Flow_1c0u4fa">
+        <di:waypoint x="238" y="300" />
+        <di:waypoint x="475" y="300" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataOutputAssociation_0mrwapp_di" bpmnElement="DataOutputAssociation_0mrwapp">
         <di:waypoint x="1180" y="530" />
         <di:waypoint x="1180" y="370" />
@@ -367,10 +352,10 @@ execution.setVariable("neuerBeitrag", neuerBeitrag);</bpmn:script>
         <di:waypoint x="1670" y="310" />
         <di:waypoint x="1782" y="310" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataInputAssociation_1olus19_di" bpmnElement="DataInputAssociation_1olus19">
-        <di:waypoint x="238" y="170" />
-        <di:waypoint x="360" y="170" />
-        <di:waypoint x="360" y="260" />
+      <bpmndi:BPMNEdge id="DataInputAssociation_03zg2qn_di" bpmnElement="DataInputAssociation_03zg2qn">
+        <di:waypoint x="238" y="420" />
+        <di:waypoint x="660" y="420" />
+        <di:waypoint x="660" y="340" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
