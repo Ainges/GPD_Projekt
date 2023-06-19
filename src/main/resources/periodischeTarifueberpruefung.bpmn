@@ -15,12 +15,14 @@
         <bpmn:flowNodeRef>Event_1iz282u</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:startEvent id="Event_0uh6u3w" name="Einmal pro Tag">
+    <bpmn:startEvent id="Event_0uh6u3w" name="Einmal pro Tag ">
+      <bpmn:documentation>(Timer Event in prod.)</bpmn:documentation>
       <bpmn:outgoing>Flow_1puz6x7</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:dataObjectReference id="DataObjectReference_1645yzr" name="Mitgliederdaten" dataObjectRef="DataObject_1dgn418" />
     <bpmn:dataObject id="DataObject_1dgn418" />
     <bpmn:serviceTask id="Activity_0am48uk" name="Mitgliederdaten laden" camunda:class="de.thi.services.ReadMember">
+      <bpmn:documentation>Hier werden die Mitgliederdaten von allen Mitglieder aus der DB (oder auch einem Json String ) geladen.</bpmn:documentation>
       <bpmn:incoming>Flow_1puz6x7</bpmn:incoming>
       <bpmn:outgoing>Flow_0gswwfs</bpmn:outgoing>
       <bpmn:property id="Property_01zlyuk" name="__targetRef_placeholder" />
@@ -38,6 +40,11 @@
       <bpmn:multiInstanceLoopCharacteristics camunda:collection="users" camunda:elementVariable="user" />
     </bpmn:callActivity>
     <bpmn:endEvent id="Event_1iz282u" name="Mitgliederdaten Erfolgreich aktualsisiert">
+      <bpmn:extensionElements>
+        <camunda:executionListener event="start">
+          <camunda:script scriptFormat="JavaScript">console.log("&gt;perioidscheTarifueberpruefung&lt; wurde erfolgreich mit &gt;&gt;Mitgliederdaten Erfolgreich aktualsisiert&lt;&lt; beended!");</camunda:script>
+        </camunda:executionListener>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_12wgme9</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_1puz6x7" sourceRef="Event_0uh6u3w" targetRef="Activity_0am48uk" />
@@ -56,7 +63,7 @@
       <bpmndi:BPMNShape id="BPMNShape_0m7fmxi" bpmnElement="Event_0uh6u3w">
         <dc:Bounds x="227" y="242" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="208" y="285" width="74" height="14" />
+          <dc:Bounds x="210" y="285" width="74" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_0b6u6iz" bpmnElement="DataObjectReference_1645yzr">
