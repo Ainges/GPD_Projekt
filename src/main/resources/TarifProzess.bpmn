@@ -46,12 +46,18 @@
       </bpmn:extensionElements>
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${neuerBeitrag}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_07flse1" sourceRef="Activity_0jgtiy9" targetRef="Gateway_0j7mxgl" />
+    <bpmn:sequenceFlow id="Flow_07flse1" sourceRef="Activity_0jgtiy9" targetRef="Gateway_0j7mxgl">
+      <bpmn:extensionElements>
+        <camunda:executionListener event="take">
+          <camunda:script scriptFormat="JavaScript">console.log("bestaetigungMitglied = " + bestaetigungMitglied);</camunda:script>
+        </camunda:executionListener>
+      </bpmn:extensionElements>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0onlcpx" name="ja" sourceRef="Gateway_0j7mxgl" targetRef="Event_1x32mqp">
       <bpmn:extensionElements>
         <camunda:executionListener event="take">
           <camunda:script scriptFormat="JavaScript">console.log(vorname + " " + nachname + " hat den neuen Beitrag akzeptiert!");
-console.log("Schreibe den neuen Beitrag " + beitragNEW + "€ in die Mitgliederdaten von " + vorname + " " + nachname); </camunda:script>
+console.log("Schreibe den neuen Beitrag " + beitragNEW + "€ in die Mitgliederdaten von " + vorname + " " + nachname+"..."); </camunda:script>
         </camunda:executionListener>
       </bpmn:extensionElements>
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${bestaetigungMitglied}</bpmn:conditionExpression>
@@ -127,6 +133,10 @@ console.log("&gt;TarifProzess&lt; endet mit dem Endereignis &gt;&gt;Neuer Beitra
           <camunda:inputParameter name="beitragNEW">${beitragNEW}</camunda:inputParameter>
           <camunda:outputParameter name="bestaetigungMitglied">${bestaetigungMitglied}</camunda:outputParameter>
         </camunda:inputOutput>
+        <camunda:executionListener event="start">
+          <camunda:script scriptFormat="JavaScript">var bestaetigungMitglied = false;
+execution.setVariable("bestaetigungMitglied", bestaetigungMitglied);</camunda:script>
+        </camunda:executionListener>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1nwys22</bpmn:incoming>
       <bpmn:outgoing>Flow_07flse1</bpmn:outgoing>
@@ -186,9 +196,10 @@ execution.setVariable("neuerBeitrag", neuerBeitrag);</bpmn:script>
       <bpmn:outgoing>Flow_1nwys22</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:boundaryEvent id="Event_04itot6" name="7 Tage (DEBUG 2min!)" attachedToRef="Activity_0jgtiy9">
+      <bpmn:extensionElements />
       <bpmn:outgoing>Flow_0ha3k6s</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_07b4fo4">
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT2M</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT20S</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:boundaryEvent>
   </bpmn:process>
