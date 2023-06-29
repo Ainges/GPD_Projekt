@@ -12,7 +12,8 @@ public class OutputUser implements JavaDelegate {
     public void execute(DelegateExecution execution) throws Exception {
         User user = (User) execution.getVariable("user");
         Integer loopCounter = (Integer) execution.getVariable("loopCounter");
-        // Log Userdate (mostly for debugging)
+
+        // Log Userdate
         logUser(user, loopCounter);
 
         // Write User attributes to  Process variables
@@ -32,9 +33,8 @@ public class OutputUser implements JavaDelegate {
 
 
     public void logUser(User user, Integer loopCounter){
-        LOG.info("######################");
-        LOG.info("Trying to output user of instance " + loopCounter);
-
+        LOG.info("##################################################################");
+        LOG.info("Ausgabe von Mitglied aus Instanz " + loopCounter + " wird vorbereitet...");
         LOG.info("Vorame: " + user.getVorname());
         LOG.info("Nachname: " + user.getNachname());
         LOG.info("Alter: " + user.getAlter());
@@ -43,7 +43,6 @@ public class OutputUser implements JavaDelegate {
         LOG.info("Art der Aktivität: " + user.getArtDerAktivitaet());
         LOG.info("Ehrenmitglied: " + user.isEhrenmitglied());
         LOG.info("Beitragsanpassung gestartet: " + user.isBeitragsanpassungGestartet());
-
-        LOG.info("######################");
+        LOG.info("##################################################################");
     }
 }
