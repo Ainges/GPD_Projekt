@@ -95,6 +95,10 @@
       <bpmn:escalationEventDefinition id="EscalationEventDefinition_0a8mwjg" escalationRef="Escalation_1cmpqk8" camunda:escalationCodeVariable="eskalationsgrund" />
     </bpmn:boundaryEvent>
     <bpmn:sequenceFlow id="Flow_1ul3xrl" sourceRef="Event_0rk7607" targetRef="Gateway_1bt1m9u" />
+    <bpmn:userTask id="Activity_1g2xxu8" name="DEBUG Tarif Prozess fertig">
+      <bpmn:incoming>Flow_18rt0qw</bpmn:incoming>
+      <bpmn:outgoing>Flow_1xotzwg</bpmn:outgoing>
+    </bpmn:userTask>
   </bpmn:process>
   <bpmn:escalation id="Escalation_1t6urck" name="beitragNichtAkzeptiert" escalationCode="Das Mitglied hat den neuen Beitragssatz nicht akzeptiert!" />
   <bpmn:escalation id="Escalation_1cmpqk8" name="mitgliedGesperrt" escalationCode="Das Mitglied wurde gesperrt, da es nicht reagiert hat" />
@@ -136,6 +140,7 @@
         <dc:Bounds x="460" y="260" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
+
       <bpmndi:BPMNShape id="Activity_1r69foi_di" bpmnElement="Activity_0hmhnls">
         <dc:Bounds x="750" y="260" width="100" height="80" />
         <bpmndi:BPMNLabel />
@@ -146,6 +151,7 @@
       <bpmndi:BPMNShape id="Gateway_1bt1m9u_di" bpmnElement="Gateway_1bt1m9u" isMarkerVisible="true">
         <dc:Bounds x="825" y="485" width="50" height="50" />
       </bpmndi:BPMNShape>
+
       <bpmndi:BPMNShape id="BPMNShape_09emnuj" bpmnElement="Event_0rk7607">
         <dc:Bounds x="732" y="322" width="36" height="36" />
         <bpmndi:BPMNLabel>
