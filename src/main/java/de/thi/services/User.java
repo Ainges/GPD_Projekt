@@ -2,6 +2,9 @@ package de.thi.services;
 
 import java.io.Serializable;
 
+/*
+* Hubertus Seitz
+* */
 public class User implements Serializable {
     private String vorname;
     private String nachname;

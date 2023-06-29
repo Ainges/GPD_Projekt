@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
+/*
+* Hubertus Seitz
+* */
 public class ReadMember implements JavaDelegate {
 
     // Get Logger

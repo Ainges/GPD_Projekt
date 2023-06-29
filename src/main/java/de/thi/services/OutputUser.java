@@ -5,6 +5,9 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/*
+* Hubertus Seitz
+* */
 public class OutputUser implements JavaDelegate {
     private static final Logger LOG = LoggerFactory.getLogger(OutputUser.class);
 

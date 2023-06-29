@@ -31,6 +31,11 @@
       "text": "<h5> Bitte beachten Sie, dass Sie den neuen Beitrag innerhalb von 7 Tagen entweder akzeptieren oder ablehenn müssen, da ihr Account sonst gesperrt wird!</h5>",
       "type": "text",
       "id": "Field_1ofgc1o"
+    },
+    {
+      "text": "<h6 align=\"right\">Author: Hubertus Seitz</h6>\n",
+      "type": "text",
+      "id": "Field_0jgbv8p"
     }
   ],
   "type": "default",

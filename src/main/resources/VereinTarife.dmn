@@ -245,51 +245,55 @@
   <inputData id="InputData_1jq7yv4" name="mitgliedschaft" />
   <inputData id="InputData_1760k4c" name="artDerAktivitaet" />
   <inputData id="InputData_0oxn2wp" name="ehrenmitglied" />
+  <inputData id="InputData_1fzgi4r" name="Hubertus Seitz" />
   <dmndi:DMNDI>
     <dmndi:DMNDiagram>
       <dmndi:DMNShape dmnElementRef="beitragBerechnen">
-        <dc:Bounds height="80" width="180" x="370" y="80" />
+        <dc:Bounds height="80" width="180" x="370" y="300" />
       </dmndi:DMNShape>
       <dmndi:DMNShape id="DMNShape_13iyk0y" dmnElementRef="InputData_1txpc7n">
-        <dc:Bounds height="45" width="125" x="157" y="297" />
+        <dc:Bounds height="45" width="125" x="157" y="517" />
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="DMNEdge_0sl1e7b" dmnElementRef="InformationRequirement_09u5shd">
-        <di:waypoint x="220" y="297" />
-        <di:waypoint x="400" y="180" />
-        <di:waypoint x="400" y="160" />
+        <di:waypoint x="220" y="517" />
+        <di:waypoint x="400" y="400" />
+        <di:waypoint x="400" y="380" />
       </dmndi:DMNEdge>
       <dmndi:DMNShape id="DMNShape_06kj11m" dmnElementRef="InputData_1qc3qxq">
-        <dc:Bounds height="45" width="125" x="237" y="377" />
+        <dc:Bounds height="45" width="125" x="237" y="597" />
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="DMNEdge_05pynwl" dmnElementRef="InformationRequirement_1dahmdb">
-        <di:waypoint x="300" y="377" />
-        <di:waypoint x="430" y="180" />
-        <di:waypoint x="430" y="160" />
+        <di:waypoint x="300" y="597" />
+        <di:waypoint x="430" y="400" />
+        <di:waypoint x="430" y="380" />
       </dmndi:DMNEdge>
       <dmndi:DMNShape id="DMNShape_0hmfnhm" dmnElementRef="InputData_1jq7yv4">
-        <dc:Bounds height="45" width="125" x="387" y="427" />
+        <dc:Bounds height="45" width="125" x="387" y="647" />
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="DMNEdge_1kentk9" dmnElementRef="InformationRequirement_1evj8r8">
-        <di:waypoint x="450" y="427" />
-        <di:waypoint x="460" y="180" />
-        <di:waypoint x="460" y="160" />
+        <di:waypoint x="450" y="647" />
+        <di:waypoint x="460" y="400" />
+        <di:waypoint x="460" y="380" />
       </dmndi:DMNEdge>
       <dmndi:DMNShape id="DMNShape_1bmb68n" dmnElementRef="InputData_1760k4c">
-        <dc:Bounds height="45" width="125" x="568" y="358" />
+        <dc:Bounds height="45" width="125" x="568" y="578" />
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="DMNEdge_17xttjq" dmnElementRef="InformationRequirement_1of2agc">
-        <di:waypoint x="631" y="358" />
-        <di:waypoint x="490" y="180" />
-        <di:waypoint x="490" y="160" />
+        <di:waypoint x="631" y="578" />
+        <di:waypoint x="490" y="400" />
+        <di:waypoint x="490" y="380" />
       </dmndi:DMNEdge>
       <dmndi:DMNShape id="DMNShape_10rivf2" dmnElementRef="InputData_0oxn2wp">
-        <dc:Bounds height="45" width="125" x="788" y="298" />
+        <dc:Bounds height="45" width="125" x="788" y="518" />
       </dmndi:DMNShape>
       <dmndi:DMNEdge id="DMNEdge_1nmiug3" dmnElementRef="InformationRequirement_0sr7qqk">
-        <di:waypoint x="851" y="298" />
-        <di:waypoint x="520" y="180" />
-        <di:waypoint x="520" y="160" />
+        <di:waypoint x="851" y="518" />
+        <di:waypoint x="520" y="400" />
+        <di:waypoint x="520" y="380" />
       </dmndi:DMNEdge>
+      <dmndi:DMNShape id="DMNShape_1jjgj8s" dmnElementRef="InputData_1fzgi4r">
+        <dc:Bounds height="45" width="125" x="397" y="77" />
+      </dmndi:DMNShape>
     </dmndi:DMNDiagram>
   </dmndi:DMNDI>
 </definitions>

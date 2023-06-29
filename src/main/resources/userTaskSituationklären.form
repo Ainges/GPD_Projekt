@@ -24,6 +24,11 @@
       "type": "checkbox",
       "id": "Field_1wqbuxv",
       "key": "field_0m8jds6"
+    },
+    {
+      "text": "<h6 align=\"right\">Author: Hubertus Seitz</h6>\n",
+      "type": "text",
+      "id": "Field_1afttjq"
     }
   ],
   "type": "default",
