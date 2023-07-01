@@ -26,7 +26,7 @@
     <bpmn:endEvent id="Event_0qluiaq" name="Situation geklärt">
       <bpmn:extensionElements>
         <camunda:executionListener event="start">
-          <camunda:script scriptFormat="JavaScript">console.log("&gt;TarifueberpruefungMitglied&lt; von " + vorname + " " + nachname + " endet mit &gt;&gt;Situation geklärt&lt;&lt;!");</camunda:script>
+          <camunda:script scriptFormat="JavaScript">console.log("&gt;TarifueberpruefungMitglied&lt; von " + vorname + " " + nachname + " endet mit &gt;&gt;Situation geklärt&lt;&lt;!"+" ... wird wenn notwendig entsperrt...");</camunda:script>
         </camunda:executionListener>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0agv04x</bpmn:incoming>

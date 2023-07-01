@@ -15,6 +15,9 @@ public class LockUser implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) throws Exception {
 
+        // Routine to lock user
+        // Is called when User does not react to membership fee change
+
         LOG.info("!!!!!!!!!!!!!!!!!!!!!");
         LOG.info("Locking User: "
                 + execution.getVariable("vorname")

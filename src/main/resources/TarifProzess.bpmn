@@ -200,7 +200,7 @@ execution.setVariable("neuerBeitrag", neuerBeitrag);</bpmn:script>
       <bpmn:extensionElements />
       <bpmn:outgoing>Flow_0ha3k6s</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_07b4fo4">
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT20S</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT30S</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:boundaryEvent>
   </bpmn:process>
@@ -307,7 +307,7 @@ execution.setVariable("neuerBeitrag", neuerBeitrag);</bpmn:script>
         <di:waypoint x="515" y="300" />
         <di:waypoint x="600" y="300" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="565" y="283" width="21" height="14" />
+          <dc:Bounds x="539" y="283" width="21" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_019w249_di" bpmnElement="Flow_019w249">
@@ -315,7 +315,7 @@ execution.setVariable("neuerBeitrag", neuerBeitrag);</bpmn:script>
         <di:waypoint x="490" y="140" />
         <di:waypoint x="1432" y="140" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="484" y="94" width="9" height="14" />
+          <dc:Bounds x="505" y="243" width="9" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_06yceio_di" bpmnElement="Flow_06yceio">
@@ -346,14 +346,14 @@ execution.setVariable("neuerBeitrag", neuerBeitrag);</bpmn:script>
         <di:waypoint x="1330" y="440" />
         <di:waypoint x="1432" y="440" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1352" y="348" width="9" height="14" />
+          <dc:Bounds x="1335" y="513" width="9" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_16b452x_di" bpmnElement="Flow_16b452x">
         <di:waypoint x="1355" y="570" />
         <di:waypoint x="1432" y="570" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1383" y="552" width="21" height="14" />
+          <dc:Bounds x="1359" y="552" width="21" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0ha3k6s_di" bpmnElement="Flow_0ha3k6s">

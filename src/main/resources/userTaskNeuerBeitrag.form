@@ -6,7 +6,7 @@
       "id": "Field_10x7vgx"
     },
     {
-      "label": "Alter Beitrag",
+      "label": "Alter Beitrag in €",
       "type": "textfield",
       "id": "Field_01ud60w",
       "key": "beitrag",
@@ -14,7 +14,7 @@
       "description": "Der bisherige Beitrag"
     },
     {
-      "label": "Neuer Beitrag",
+      "label": "Neuer Beitrag in €",
       "type": "textfield",
       "id": "Field_1tgpc59",
       "key": "beitragNEW",

@@ -23,7 +23,7 @@
       "label": "Hier erst abhaken, wenn die Situation geklärt werden konnte.",
       "type": "checkbox",
       "id": "Field_1wqbuxv",
-      "key": "field_0m8jds6"
+      "key": "situationGeklaert"
     },
     {
       "text": "<h6 align=\"right\">Author: Hubertus Seitz</h6>\n",
@@ -38,6 +38,6 @@
     "version": "5.9.0"
   },
   "executionPlatform": "Camunda Platform",
-  "executionPlatformVersion": "7.18.0",
+  "executionPlatformVersion": "7.17.0",
   "schemaVersion": 7
 }

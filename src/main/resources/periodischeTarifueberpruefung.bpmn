@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_02wqr49" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_02wqr49" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
   <bpmn:collaboration id="Collaboration_0hoznzq">
     <bpmn:documentation>Hubertus Seitz</bpmn:documentation>
     <bpmn:participant id="Participant_0ejrhjj" name="System" processRef="Tarifueberpruefung" />
@@ -10,16 +10,12 @@
   <bpmn:process id="Tarifueberpruefung" name="Tägliche Tarifüberprüfung" isExecutable="true">
     <bpmn:laneSet id="LaneSet_0x5xywi">
       <bpmn:lane id="Lane_193uue0">
-        <bpmn:flowNodeRef>Event_0uh6u3w</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_0am48uk</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Activity_1lfclyy</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1iz282u</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0uh6u3w</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
-    <bpmn:startEvent id="Event_0uh6u3w" name="Einmal pro Tag ">
-      <bpmn:documentation>(Timer Event in prod.)</bpmn:documentation>
-      <bpmn:outgoing>Flow_1puz6x7</bpmn:outgoing>
-    </bpmn:startEvent>
     <bpmn:dataObjectReference id="DataObjectReference_1645yzr" name="Mitgliederdaten" dataObjectRef="DataObject_1dgn418" />
     <bpmn:dataObject id="DataObject_1dgn418" />
     <bpmn:serviceTask id="Activity_0am48uk" name="Mitgliederdaten laden" camunda:class="de.thi.services.ReadMember">
@@ -51,6 +47,13 @@
     <bpmn:sequenceFlow id="Flow_1puz6x7" sourceRef="Event_0uh6u3w" targetRef="Activity_0am48uk" />
     <bpmn:sequenceFlow id="Flow_0gswwfs" sourceRef="Activity_0am48uk" targetRef="Activity_1lfclyy" />
     <bpmn:sequenceFlow id="Flow_12wgme9" sourceRef="Activity_1lfclyy" targetRef="Event_1iz282u" />
+    <bpmn:startEvent id="Event_0uh6u3w" name="Einmal pro Tag">
+      <bpmn:documentation>Jeden Tag um 02:00 Nachts</bpmn:documentation>
+      <bpmn:outgoing>Flow_1puz6x7</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_0z5ga0d">
+        <bpmn:timeCycle xsi:type="bpmn:tFormalExpression">R/P1D</bpmn:timeCycle>
+      </bpmn:timerEventDefinition>
+    </bpmn:startEvent>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0hoznzq">
@@ -60,12 +63,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Lane_193uue0_di" bpmnElement="Lane_193uue0" isHorizontal="true">
         <dc:Bounds x="185" y="80" width="630" height="380" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_0m7fmxi" bpmnElement="Event_0uh6u3w">
-        <dc:Bounds x="227" y="242" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="210" y="285" width="74" height="14" />
-        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_0b6u6iz" bpmnElement="DataObjectReference_1645yzr">
         <dc:Bounds x="367" y="125" width="36" height="50" />
@@ -85,6 +82,12 @@
         <dc:Bounds x="677" y="242" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="657" y="285" width="76" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_04iwae4_di" bpmnElement="Event_0uh6u3w">
+        <dc:Bounds x="227" y="242" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="210" y="285" width="74" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="BPMNEdge_1omili1" bpmnElement="Flow_1puz6x7">
