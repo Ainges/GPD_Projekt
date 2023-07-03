@@ -196,11 +196,11 @@ execution.setVariable("neuerBeitrag", neuerBeitrag);</bpmn:script>
       <bpmn:outgoing>Flow_0q9shc6</bpmn:outgoing>
       <bpmn:outgoing>Flow_1nwys22</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:boundaryEvent id="Event_04itot6" name="7 Tage (DEBUG 2min!)" attachedToRef="Activity_0jgtiy9">
+    <bpmn:boundaryEvent id="Event_04itot6" name="7 Tage (DEBUG 1min!)" attachedToRef="Activity_0jgtiy9">
       <bpmn:extensionElements />
       <bpmn:outgoing>Flow_0ha3k6s</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_07b4fo4">
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT30S</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1M</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:boundaryEvent>
   </bpmn:process>
